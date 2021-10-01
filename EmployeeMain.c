@@ -20,6 +20,9 @@ int main(void){
 
     PtrToEmployee searchEmployeeByName(const Employee table[], int sizeTable, char * nameToFind); 
 
+    PtrToEmployee searchEmployeeByPhoneNumber(PtrToConstEmployee ptr, int sizeTable, char * phoneNumberToFind);
+
+    PtrToEmployee searchEmployeeBySalary(PtrToConstEmployee ptr, int sizeTable, double salaryToFind);
   
     //defined in employeeTable.c 
 
@@ -32,8 +35,6 @@ int main(void){
     PtrToEmployee matchPtr;//Declaration 
 
     matchPtr = searchEmployeeByNumber(EmployeeTable, EmployeeTableEntries, 1045); 
-
- 
 
     //Example not found 
 
@@ -62,6 +63,55 @@ int main(void){
         printf("Employee Tony Bobcat is NOT found in the record\n"); 
     }
     
+    //Example Not found
+    matchPtr = searchEmployeeByPhoneNumber(EmployeeTable,EmployeeTableEntries, "909-559-2134");
+
+    if(matchPtr != NULL)
+    {
+        printf("Employee with number 909-559-2134 is in the record %d\n", matchPtr-EmployeeTable);
+    }
+    else
+    {
+        printf("Employee with number 909-559-2134 is NOT found in the record\n");
+    }
+
+    //example found
+    matchPtr = searchEmployeeByPhoneNumber(EmployeeTable,EmployeeTableEntries, "909-555-2134");
+
+    if(matchPtr != NULL)
+    {
+        printf("Employee with number 909-555-2134 is in the record %d\n", matchPtr-EmployeeTable);
+    }
+    else
+    {
+        printf("Employee with number 909-555-2134 is NOT found in the record\n");
+    }
+
+
+    //example NOT found
+    matchPtr = searchEmployeeBySalary(EmployeeTable, EmployeeTableEntries, 6.39);
+
+    if (matchPtr != NULL) 
+    {
+        printf("Employee salary 6.39 is in record %d\n", matchPtr - EmployeeTable); 
+    }
+    else 
+    {
+        printf("Employee salary is NOT found in the record\n"); 
+    }
+
+
+    //example found
+    matchPtr = searchEmployeeBySalary(EmployeeTable, EmployeeTableEntries, 6.34);
+
+    if (matchPtr != NULL) 
+    {
+        printf("Employee salary 6.34 is in record %d\n", matchPtr - EmployeeTable); 
+    }
+    else 
+    {
+        printf("Employee salary is NOT found in the record\n"); 
+    }
 
     return EXIT_SUCCESS; 
 }
